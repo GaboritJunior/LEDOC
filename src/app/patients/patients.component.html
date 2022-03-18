@@ -1,0 +1,23 @@
+<h2>Patients</h2>
+<a routerLink="nouveau">
+    +
+</a>
+<input placeholder="rechercher" type="text">
+<table>
+    <thead>
+        <td>Nom</td>
+        <td>Prenom</td>
+        <td>Derniére visite</td>
+        <td>Motif</td>
+    </thead>
+    <tbody>
+        <tr *ngFor="let patient of patients">
+            <a [routerLink]="['../patients', patient.id]">
+                <td>{{ patient.firstName }}</td>
+            </a>
+            <td>{{ patient.lastName }}</td>
+            <td>{{ patient.lastIncome }}</td>
+            <td>{{ patient.lastSubject }}</td>
+        </tr>
+    </tbody>
+</table>

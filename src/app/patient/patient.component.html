@@ -1,0 +1,119 @@
+<ul class="actions">
+    <li class="actions__item">
+        <a mat-raised-button color="default" [routerLink]="['../', patient.id, 'edit']"
+            class="actions__link">Modifier</a>
+    </li>
+    <li class="actions__item">
+        <a mat-raised-button href="tel:+123456789"
+            class="actions__link">Appeler</a>
+    </li>
+    <li class="actions__item">
+        <a mat-raised-button color="default" [routerLink]="['../', patient.id, 'edit']"
+            class="actions__link actions__link--archive">Archive</a>
+    </li>
+</ul>
+<div class="patient__header">
+    <section class="info">
+        <h3>Informations</h3>
+        <table>
+            <tbody>
+                <tr>
+                    <td>Genre:</td>
+                    <td *ngIf="genders">{{ getGender() }}</td>
+                </tr>
+                <tr>
+                    <td>Taille:</td>
+                    <td>{{ patient.height }}</td>
+                </tr>
+                <tr>
+                    <td>Poids:</td>
+                    <td>{{ patient.weight }}</td>
+                </tr>
+                <tr>
+                    <td>Allergies:</td>
+                    <td>{{ patient.allergies }}</td>
+                </tr>
+                <tr>
+                    <td>Groupe sanguin:</td>
+                    <td *ngIf="bloodgroups">{{ getBloodGroup() }}</td>
+                </tr>
+                <tr>
+                    <td>N°Sécu:</td>
+                    <td>{{ patient.socialNumber }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="notes">
+        <h3>Notes</h3>
+        <pre class="notes__text">{{ patient.notes }}</pre>
+    </section>
+</div>
+
+
+<section class="documents">
+    <h3>Documents</h3>
+    <table class="documents__table">
+        <tbody>
+            <tr *ngFor="let document of patient.documents">
+                <td><img src="../../assets/insert_drive_file.svg" alt=""></td>
+                <td>{{ document.name }}.{{ (document.extension).toLowerCase() }}</td>
+                <td>{{ document.extension }}</td>
+                <td>{{ document.uploadAt }}</td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="treatments">
+    <h3>Traitements</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Médicament*</th>
+                <th>Répétition*</th>
+                <th>Durée*</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let treatment of patient.treatments">
+                <td *ngIf="drugs">{{ getDrug(treatment.drugs) }}</td>
+                <td *ngIf="repeats">{{ getRepeat(treatment.repeats) }}</td>
+                <td *ngIf="periods">{{ getPeriod(treatment.periods) }}</td>
+                <td><button (click)="deleteTreatment(treatment.id)">X</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form [formGroup]="form" (ngSubmit)="submit()">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <select formControlName="drugs">
+                            <option *ngFor="let drug of drugs" [ngValue]="drug.id">
+                                {{ drug.label }}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <select formControlName="repeats">
+                            <option *ngFor="let repeat of repeats" [ngValue]="repeat.id">
+                                {{ repeat.label }}
+                            </option>
+                        </select>
+                    </td>
+                    <td>
+                        <select formControlName="periods">
+                            <option *ngFor="let period of periods" [ngValue]="period.id">
+                                {{ period.label }}
+                            </option>
+                        </select>
+                    </td>
+                    <td><button>V</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</section>

@@ -1,0 +1,21 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <label for="lastName">Nom</label>
+    <input type="text" name="lastName" id="lastName"  formControlName="lastName">
+    <label for="firstName">Prenom</label>
+    <input  type="text" name="firstName" id="firstName" formControlName="firstName">
+    <label for="socialNumber">N° Sécurité sociale</label>
+    <input  type="text" name="socialNumber" id="socialNumber" formControlName="socialNumber">
+    <label for="bloodGroup">Groupe Sanguin</label>
+    <input type="number" name="bloodGroup" id="hebloodGroupight" formControlName="bloodGroup">
+    <label for="height">Taille</label>
+    <input type="text" name="height" id="height" formControlName="height">
+    <label for="weight">Poid</label>
+    <input type="number" name="weight" id="weight" formControlName="weight">
+    <label for="allergies">allergies</label>
+    <input type="text" name="allergies" id="allergies" formControlName="allergies">
+    <label for="notes">Note</label>
+    <textarea style="display: block;" name="notes" id="notes" cols="100" rows="10" formControlName="notes"></textarea>
+    <button *ngIf="!this.route.snapshot.data['edit']" mat-raised-button color="primary">Ajouter</button>
+    <button *ngIf="this.route.snapshot.data['edit']" mat-raised-button color="primary">Modifier</button>
+    <button *ngIf="this.route.snapshot.data['edit']" (click)="delete()" mat-raised-button color="primary">Supprimer</button>
+</form> 

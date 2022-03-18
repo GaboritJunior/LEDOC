@@ -1,0 +1,11 @@
+<form [formGroup]="form" (ngSubmit)="login()">
+    <mat-form-field>
+        <label for="username">Adresse mail</label>
+        <input type="text" matInput formControlName="username" id="username">
+    </mat-form-field>
+    <mat-form-field>
+        <label for="password">Mot de passe</label>
+        <input type="text" matInput formControlName="password" id="password">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Se connecter</button>
+</form>

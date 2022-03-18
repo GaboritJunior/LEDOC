@@ -1,0 +1,42 @@
+<h2>Dashboard</h2>
+<h3>Statistiques</h3>
+<button (click)="getStats('day')">1j</button>
+<button (click)="getStats('week')">7j</button>
+<button (click)="getStats('month')">30j</button>
+<table>
+    <tr>
+        <td>{{ stats["meeting"] }} Rendez-vous</td>
+        <td>{{ stats["emergencies"] }} Urgences</td>
+        <td>{{ stats["videoMeeting"] }} Consultation vidéos</td>
+    </tr>
+    <tr>
+        <td>{{ stats["availablesAssits"] }} assistant disponibles</td>
+        <td>{{ stats["orders"] }} Ordonnaces</td>
+        <td>{{ stats["missingCalls"] }} Appels manqués</td>
+    </tr>
+</table>
+<h3>Les derniers patients</h3>
+<table>
+    <thead>
+        <td>Nom</td>
+        <td>Prenom</td>
+        <td>Derniére visite</td>
+        <td>Motif</td>
+    </thead>
+    <tbody *ngFor="let patient of patients">
+        <td>{{ patient.firstName }}</td>
+        <td>{{ patient.lastName }}</td>
+        <td>{{ patient.lastIncome }}</td>
+        <td>{{ patient.lastSubject }}</td>
+    </tbody>
+</table>
+<h3>{{ meets.length}} Rendez-vous aujourd'hui</h3>
+<button>Voir tous ></button>
+<table>
+    <tbody *ngFor="let meet of meets">
+        <td>{{ meet.date }}</td>
+        <td>{{ meet.patient.firstName}} {{ meet.patient.lastName }}</td>
+        <td>{{ meet.subject }}</td>
+        <td></td>
+    </tbody>
+</table>
